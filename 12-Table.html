@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+
+      <style>
+    /* Global page styles */
+    :root{font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#222}
+    body{margin:24px;background:#f7f7f9}
+    h1{font-size:20px;margin-bottom:8px}
+    p.lead{color:#555;margin-top:0;margin-bottom:20px}
+    section{background:#fff;padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);margin-bottom:18px}
+    section + section{margin-top:10px}
+    caption{caption-side:top;text-align:left;font-weight:600;margin-bottom:8px}
+
+    /* 1) Classic bordered table */
+    .tbl-bordered{width:100%;border-collapse:collapse}
+    .tbl-bordered th, .tbl-bordered td{border:1px solid #d0d5dd;padding:10px 12px;text-align:left}
+    .tbl-bordered thead th{background:#f0f2f5}
+
+    /* 2) Zebra striped table */
+    .tbl-striped{width:100%;border-collapse:collapse}
+    .tbl-striped th, .tbl-striped td{padding:10px 12px;text-align:left}
+    .tbl-striped tbody tr:nth-child(odd){background:#fff}
+    .tbl-striped tbody tr:nth-child(even){background:#f9fafb}
+    .tbl-striped th{background:#111827;color:#fff;padding:12px}
+
+    /* 3) Hover-highlight, rounded corners */
+    .tbl-hover{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden}
+    .tbl-hover thead th{background:linear-gradient(90deg,#4f46e5,#06b6d4);color:#fff;padding:12px}
+    .tbl-hover th:first-child, .tbl-hover td:first-child{border-top-left-radius:8px;border-bottom-left-radius:8px}
+    .tbl-hover th:last-child, .tbl-hover td:last-child{border-top-right-radius:8px;border-bottom-right-radius:8px}
+    .tbl-hover td{padding:12px;border:1px solid rgba(0,0,0,0.06);background:#fff}
+    .tbl-hover tbody tr{transition:transform .12s ease, background .12s ease}
+    .tbl-hover tbody tr:hover{background:#f1f5f9;transform:translateY(-2px)}
+
+    /* 4) Compact (dense) table for data-heavy lists */
+    .tbl-compact{width:100%;border-collapse:collapse;font-size:13px}
+    .tbl-compact th, .tbl-compact td{padding:6px 8px;border-bottom:1px dashed #e6e9ef}
+    .tbl-compact thead th{font-weight:700;color:#0f172a}
+    .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;background:#eef2ff;color:#3730a3}
+
+    /* 5) Scrollable body with fixed header */
+    .tbl-fixed{width:100%;border-collapse:collapse}
+    .tbl-fixed thead th{position:sticky;top:0;background:#111827;color:#fff;padding:10px}
+    .tbl-fixed th, .tbl-fixed td{padding:10px;border:1px solid #e6e9ef}
+    .tbl-fixed-wrapper{max-height:180px;overflow:auto;border-radius:8px}
+
+    /* 6) Card-like table with subtle shadows */
+    .tbl-card{width:100%;border-collapse:collapse;background:linear-gradient(180deg,#ffffff,#fbfdff);border-radius:10px;overflow:hidden}
+    .tbl-card th, .tbl-card td{padding:14px 12px;text-align:left}
+    .tbl-card thead th{background:transparent;color:#0b1220;border-bottom:2px solid rgba(11,18,32,0.06)}
+    .tbl-card tbody tr{box-shadow:0 1px 0 rgba(11,18,32,0.03)}
+
+    /* small helpers */
+    .muted{color:#6b7280;font-size:13px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:780px){.grid-2{grid-template-columns:1fr}}
+  </style>
+
+
+
+</head>
+<body>
+  <h1>HTML Multiple Table Styles </h1>
+  <p class="lead">Six different tables below — each demonstrates a different styling approach. Copy this file and open it in your browser.</p>
+
+  <div class="grid-2">
+    <!-- Section 1: Classic Bordered -->
+    <section>
+      <caption>1. Classic Bordered Table</caption>
+      <table class="tbl-bordered" aria-label="Classic bordered example">
+        <thead>
+          <tr><th>Product</th><th>Price</th><th>Stock</th><th>Rating</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cinnamon Ceylon</td><td>$6.50</td><td>In stock</td><td>4.5</td></tr>
+          <tr><td>Star Anise</td><td>$3.20</td><td>12 pcs</td><td>4.8</td></tr>
+          <tr><td>Cloves</td><td>$4.00</td><td>Out of stock</td><td>4.1</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 2: Zebra Striped -->
+    <section>
+      <caption>2. Zebra Striped Table</caption>
+      <table class="tbl-striped" aria-label="Zebra striped example">
+        <thead>
+          <tr><th>#</th><th>Customer</th><th>City</th><th>Orders</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Jim</td><td>Karachi</td><td>14</td></tr>
+          <tr><td>2</td><td>Debra</td><td>Lahore</td><td>8</td></tr>
+          <tr><td>3</td><td>Stephanie</td><td>Islamabad</td><td>5</td></tr>
+          <tr><td>4</td><td>Ali</td><td>Multan</td><td>21</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 3: Hover highlight, rounded -->
+    <section>
+      <caption>3. Hover Highlight (rounded)</caption>
+      <table class="tbl-hover" aria-label="Hover highlight example">
+        <thead>
+          <tr><th>Task</th><th>Owner</th><th>Due</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Implement login</td><td>Muqtasid</td><td>2025-11-10</td><td>In progress</td></tr>
+          <tr><td>Write tests</td><td>Shoaib</td><td>2025-11-12</td><td>Planned</td></tr>
+          <tr><td>Deploy to staging</td><td>Asad</td><td>2025-11-15</td><td>Blocked</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 4: Compact table -->
+    <section>
+      <caption>4. Compact / Dense Table</caption>
+      <table class="tbl-compact" aria-label="Compact example">
+        <thead>
+</html>
