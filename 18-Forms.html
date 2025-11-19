@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html forms</title>
+</head>
+<body>
+    <h2>Forms</h2>
+    <form action="/action_page.php">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <label for="lname">Human:</label><br>
+  <input type="checkbox" id="checkbox" name="checkbox" value="checkbox"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+
+<form action="action.asp">
+ <a href="https://www.linkedin.com/feed/" target="_blank">Click here (_blank)</a>
+ <a href="https://www.linkedin.com/feed/" target="_parent">Click here (_parent)</a>
+ <a href="https://www.linkedin.com/feed/" target="_self">Click here (_self)</a>
+ <a href="https://www.linkedin.com/feed/" target="_top">Click here (_top)</a>
+</form>
+
+<p>Then, try to set autocomplete to "off".</p>
+
+<form action="/action_page.php" autocomplete="on">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="email">Email:</label>
+  <input type="text" id="email" name="email"><br><br>
+  <input type="submit">
+</form>
+
+<h2>HTML Input Types Examples</h2>
+
+<form>
+
+    <!-- Button -->
+    <p>Button: <input type="button" value="Click Me"></p>
+
+    <!-- Checkbox -->
+    <p>Checkbox: <input type="checkbox"> I agree</p>
+
+    <!-- Color Picker -->
+    <p>Color: <input type="color"></p>
+
+    <!-- Date -->
+    <p>Date: <input type="date"></p>
+
+    <!-- Datetime Local -->
+    <p>Date & Time: <input type="datetime-local"></p>
+
+    <!-- Email -->
+    <p>Email: <input type="email" placeholder="Enter your email"></p>
+
+    <!-- File -->
+    <p>File Upload: <input type="file"></p>
+
+    <!-- Hidden -->
+    <p>Hidden Input (not visible): <input type="hidden" value="secret"></p>
+
+    <!-- Image Submit -->
+    <p>Image Button (submit): 
+        <input type="image" src="https://via.placeholder.com/80" alt="Submit">
+    </p>
+
+    <!-- Month -->
+    <p>Month: <input type="month"></p>
+
+    <!-- Number -->
+    <p>Number: <input type="number" min="1" max="10"></p>
+
+    <!-- Password -->
+    <p>Password: <input type="password"></p>
+
+    <!-- Radio -->
+    <p>
+        Gender:
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female
+    </p>
+
+    <!-- Range -->
+    <p>Range: <input type="range" min="0" max="100"></p>
+
+    <!-- Reset -->
+    <p>Reset Button: <input type="reset"></p>
+
+    <!-- Search -->
+    <p>Search: <input type="search" placeholder="Search here"></p>
+
+    <!-- Submit -->
+    <p>Submit: <input type="submit" value="Submit Form"></p>
+
+    <!-- Telephone -->
+    <p>Phone: <input type="tel" placeholder="+123456789"></p>
+
+    <!-- Text -->
+    <p>Text: <input type="text" placeholder="Enter text"></p>
+
+    <!-- Time -->
+    <p>Time: <input type="time"></p>
+
+    <!-- URL -->
+    <p>Website: <input type="url" placeholder="https://example.com"></p>
+
+    <!-- Week -->
+    <p>Week: <input type="week"></p>
+
+</form>
+
+<form>
+  <input list="browsers">
+  <datalist id="browsers">
+    <option value="Edge">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+</form>
+
+<h1>HTML Input Form Attributes Examples</h1>
+
+<!-- ======================= -->
+<h2>1. form Attribute</h2>
+<p>Allows an input to be part of a form even if it is placed outside the form.</p>
+<hr>
+
+<form action="/action_page.php" id="form1">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<label for="lname">Last name:</label>
+<input type="text" id="lname" name="lname" form="form1">
+
+<!-- ======================= -->
+<h2>2. formaction Attribute</h2>
+<p>Overrides the form's action URL for a specific submit button.</p>
+<hr>
+
+<form action="/action_page.php">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+
+  <input type="submit" value="Submit">
+  <input type="submit" formaction="/action_page2.php" value="Submit as Admin">
+</form>
+
+<!-- ======================= -->
+<h2>3. formenctype Attribute</h2>
+<p>Specifies how the form-data is encoded in POST requests.</p>
+<hr>
+
+<form action="/action_page_binary.asp" method="post">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+
+  <input type="submit" value="Submit">
+  <input type="submit" formenctype="multipart/form-data"
+         value="Submit as Multipart/form-data">
+</form>
+
+<!-- ======================= -->
+<h2>4. formmethod Attribute</h2>
+<p>Defines whether form data will be sent using GET or POST for a specific button.</p>
+<hr>
+
+<form action="/action_page.php" method="get">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+
+  <input type="submit" value="Submit using GET">
+  <input type="submit" formmethod="post" value="Submit using POST">
+</form>
+
+<!-- ======================= -->
+<h2>5. formtarget Attribute</h2>
+<p>Defines where to open the result after form submission.</p>
+<hr>
+
+<form action="/action_page.php">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+
+  <input type="submit" value="Submit">
+  <input type="submit" formtarget="_blank" value="Submit to new tab">
+</form>
+
+<!-- ======================= -->
+<h2>6. formnovalidate Attribute</h2>
+<p>Submit form without validation for this button.</p>
+<hr>
+
+<form action="/action_page.php">
+  <label for="email">Enter your email:</label>
+  <input type="email" id="email" name="email"><br><br>
+
+  <input type="submit" value="Submit">
+  <input type="submit" formnovalidate="formnovalidate"
+         value="Submit without validation">
+</form>
+
+<!-- ======================= -->
+<h2>7. novalidate Attribute (Form Attribute)</h2>
+<p>Disables validation for the entire form.</p>
+<hr>
+
+<form action="/action_page.php" novalidate>
+  <label for="email">Enter your email:</label>
+  <input type="email" id="email" name="email"><br><br>
+
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
