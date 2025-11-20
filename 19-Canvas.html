@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HTML Canvas — Shapes (Circle, Square, Rectangle, Triangle)</title>
+  <style>
+    :root{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;}
+    body{display:flex;gap:20px;padding:24px;background:#f7f7f8;color:#111}
+    .panel{max-width:420px}
+    .controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+    button{padding:8px 12px;border-radius:8px;border:1px solid #d6d6d8;background:white;cursor:pointer}
+    button:active{transform:translateY(1px)}
+    .canvas-wrap{flex:1;min-width:280px;background:#fff;border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(12,12,16,0.06)}
+    canvas{width:100%;height:360px;display:block;border:1px solid #eee;border-radius:8px}
+    .info{font-size:13px;color:#555;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>Shapes</h2>
+    <div class="controls">
+      <button id="drawCircle">Circle</button>
+      <button id="drawSquare">Square</button>
+      <button id="drawRect">Rectangle</button>
+      <button id="drawTriangle">Triangle</button>
+      <button id="drawLine">Line</button>
+      <button id="fillShape">Fill</button>
+      <button id="strokeShape">Stroke</button>
+      <button id="clear">Clear</button>
+    </div>
+    <div class="info">Tip: Resize the window — canvas is responsive and retina-ready.</div>
+  </div>
+
+  <div class="canvas-wrap">
+    <canvas id="c"></canvas>
+  </div>
+
+  <script>
+    // Responsive and high-DPI canvas setup
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      const ratio = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = Math.round(rect.width * ratio);
+      canvas.height = Math.round(rect.height * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0); // make drawing coordinates CSS pixels
+      // optional: redraw scene if you store state
+    }
+
+    // initial resize
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    resizeCanvas();
+
+    // common style
+    let fillMode = false; // toggled by Fill button
+    function setStyle() {
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#2b2b2b';
+      ctx.fillStyle = '#f59e0b';
+    }
+
+    // helper: clear
+    function clear() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // draw a centered circle
+    function drawCircle() {
+      setStyle();
+      const w = canvas.clientWidth; const h = canvas.clientHeight;
+      const cx = w/2; const cy = h/2; const r = Math.min(w,h)/4;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      if (fillMode) ctx.fill();
+      ctx.stroke();
+    }
+
+    // draw a square (centered)
+    function drawSquare() {
+      setStyle();
+      const size = Math.min(canvas.clientWidth, canvas.clientHeight) / 2.5;
+      const x = (canvas.clientWidth - size)/2;
+      const y = (canvas.clientHeight - size)/2;
+      ctx.beginPath();
+      ctx.rect(x, y, size, size);
+      if (fillMode) ctx.fill();
+      ctx.stroke();
+    }
+
+    // draw a rectangle (wide)
+    function drawRect() {
+      setStyle();
+      const w = canvas.clientWidth * 0.7;
+      const h = canvas.clientHeight * 0.35;
+      const x = (canvas.clientWidth - w)/2;
+      const y = (canvas.clientHeight - h)/2;
+      ctx.beginPath();
+      ctx.rect(x, y, w, h);
+      if (fillMode) ctx.fill();
+      ctx.stroke();
+    }
+
+    // draw a triangle (equilateral-ish, pointing up)
+    function drawTriangle() {
+      setStyle();
+      const w = canvas.clientWidth; const h = canvas.clientHeight;
+      const cx = w/2; const cy = h/2;
+      const size = Math.min(w,h)/2.4;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - size/1.2); // top
+      ctx.lineTo(cx - size/1.2, cy + size/1.6); // bottom-left
+      ctx.lineTo(cx + size/1.2, cy + size/1.6); // bottom-right
+      ctx.closePath();
+      if (fillMode) ctx.fill();
+      ctx.stroke();
+    }
+
+    // draw a line
+    function drawLine() {
+      setStyle();
+      ctx.beginPath();
+      ctx.moveTo(canvas.clientWidth * 0.15, canvas.clientHeight * 0.85);
+      ctx.lineTo(canvas.clientWidth * 0.85, canvas.clientHeight * 0.15);
+      ctx.stroke();
+    }
+
+    // wire buttons
+    document.getElementById('drawCircle').addEventListener('click', () => { clear(); drawCircle(); });
+    document.getElementById('drawSquare').addEventListener('click', () => { clear(); drawSquare(); });
+    document.getElementById('drawRect').addEventListener('click', () => { clear(); drawRect(); });
+    document.getElementById('drawTriangle').addEventListener('click', () => { clear(); drawTriangle(); });
+    document.getElementById('drawLine').addEventListener('click', () => { clear(); drawLine(); });
+    document.getElementById('clear').addEventListener('click', () => { clear(); });
+    document.getElementById('fillShape').addEventListener('click', (e) => { fillMode = true; e.currentTarget.style.outline = '2px solid #ffd'; });
+    document.getElementById('strokeShape').addEventListener('click', (e) => { fillMode = false; e.currentTarget.style.outline = '2px solid #ffd'; });
+
+    // draw an initial example
+    clear(); drawCircle();
+  </script>
+</body>
+</html>
