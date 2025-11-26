@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geolocation with Full Address</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+        #box {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            background: #0078ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background: #005fcc; }
+        p { margin-top: 15px; font-size: 16px; }
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <h2>Geolocation + Full Address</h2>
+
+    <button onclick="getLocation()">Get My Full Location</button>
+
+    <p id="output">Your full location will appear here...</p>
+</div>
+
+<script>
+function getLocation() {
+    const output = document.getElementById("output");
+
+    // Check browser support
+    if (!navigator.geolocation) {
+        output.innerText = "Geolocation is not supported.";
+        return;
+    }
+
+    output.innerText = "Fetching location… please wait.";
+
+    navigator.geolocation.getCurrentPosition(success, error);
+}
+
+function success(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    // Show coordinates
+    document.getElementById("output").innerHTML =
+        "Latitude: " + lat + "<br>" +
+        "Longitude: " + lon + "<br><br>" +
+        "Fetching full address… please wait.";
+
+    // Reverse Geocoding API (OpenStreetMap)
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            const address = data.display_name;
+            document.getElementById("output").innerHTML =
+                "<b>Your Full Address:</b><br>" +
+                address;
+        })
+        .catch(() => {
+            document.getElementById("output").innerText = 
+                "Unable to get full address.";
+        });
+}
+
+function error() {
+    document.getElementById("output").innerText = 
+        "Unable to retrieve your location.";
+}
+</script>
+
+</body>
+</html>
